@@ -1,0 +1,49 @@
+
+.root{
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+}
+#buttonEnter{
+
+    -fx-padding: 10px 20px;
+    -fx-background-color: #41CCC2;
+
+}
+#buttonEnter:hover{
+
+    -fx-background-color: #24EEDF;
+
+}
+#buttonAdd{
+    -fx-border-color: #99FF99;
+    -fx-padding: 10px 20px;
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+}
+#buttonAdd:hover{
+    -fx-background-color: #99FF99;
+
+    -fx-border-radius: 20px;
+}
+#buttonUpdate{
+    -fx-border-color: #1BDCD6;
+    -fx-padding: 10px 20px;
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+}
+#buttonUpdate:hover{
+    -fx-background-color: #1BDCD6;
+    -fx-border-radius: 20px;
+}
+#buttonDelete{
+    -fx-border-color: #FF0000;
+    -fx-padding: 10px 20px;
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+
+}
+#buttonDelete:hover{
+    -fx-background-color: #FF0000;
+    -fx-border-radius: 20px;
+
+}

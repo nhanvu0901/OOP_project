@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="tab2" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Control.ControllerPartTime">
+    <children>
+        <Label fx:id="nameLabel" layoutX="17.0" layoutY="77.0" prefHeight="17.0" prefWidth="75.0" text="Tên giáo viên" />
+        <Label fx:id="teachAtSchoolYearLabel" layoutX="14.0" layoutY="125.0" text="Năm về trường" />
+
+        <TextField fx:id="nameText" layoutX="129.0" layoutY="73.0" promptText="Nhập tên giáo viên" />
+        <Button id="buttonAdd" fx:id="buttonAdd" layoutX="13.0" layoutY="404.0" mnemonicParsing="false" onAction="#addUser" prefHeight="25.0" prefWidth="141.0" stylesheets="@../style/style.css" text="Add Giáo Viên" />
+        <TextField fx:id="teachAtSchoolYearText" layoutX="129.0" layoutY="121.0" promptText="Nhập năm về trường" />
+        <Label fx:id="specialtyLabel" layoutX="14.0" layoutY="169.0" text="Chuyên môn" />
+        <Label fx:id="phoneLabel" layoutX="13.0" layoutY="214.0" text="Số điện thoại" />
+        <Label fx:id="hourLabel" layoutX="14.0" layoutY="264.0" text="Số giờ giảng dạy" />
+        <TextField fx:id="specialtyText" layoutX="129.0" layoutY="165.0" promptText="Nhập chuyên môn" />
+        <TextField fx:id="phoneText" layoutX="129.0" layoutY="210.0" promptText="Nhấp số điện thoại" />
+        <TextField fx:id="hourText" layoutX="129.0" layoutY="260.0" promptText="Nhập số giờ giảng dạy" />
+        <TableView fx:id="table1" layoutX="310.0" layoutY="-1.0" onMouseClicked="#getSelected" prefHeight="521.0" prefWidth="691.0">
+            <columns>
+                <TableColumn fx:id="col_id" prefWidth="46.66668701171875" text="ID" />
+                <TableColumn fx:id="col_name" prefWidth="126.0" text="Tên" />
+                <TableColumn fx:id="col_teachAtSchoolYear" prefWidth="97.66668701171875" text="Năm về trường" />
+                <TableColumn fx:id="col_specialty" prefWidth="111.0" text="Chuyên môn" />
+                <TableColumn fx:id="col_phone" prefWidth="97.6666259765625" text="Số điện thoại" />
+                <TableColumn fx:id="col_salary" prefWidth="93.3333740234375" text="Lương/tháng" />
+                <TableColumn fx:id="col_hour" prefWidth="112.66668701171875" text="Số giờ giảng dạy" />
+            </columns>
+        </TableView>
+        <Label layoutX="14.0" layoutY="314.0" text="Lương" />
+        <TextField fx:id="salaryText" disable="true" layoutX="129.0" layoutY="310.0" />
+        <Label fx:id="inform" layoutX="11.0" layoutY="349.0" text="Không được để trống dòng" textFill="#e91616" visible="false" />
+        <Button id="buttonUpdate" fx:id="buttonUpdate" layoutX="166.0" layoutY="404.0" mnemonicParsing="false" onAction="#editUser" prefHeight="25.0" prefWidth="138.0" styleClass="root" stylesheets="@../style/style.css" text="Update Giáo Viên" />
+        <Button id="buttonDelete" fx:id="buttonDelete" layoutX="80.0" layoutY="457.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="147.0" styleClass="root" stylesheets="@../style/style.css" text="Xóa Giáo Viên" />
+        <Label layoutX="35.0" layoutY="8.0" prefHeight="45.0" prefWidth="241.0" text="Giáo viên thời vụ ">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+      <Label layoutX="12.0" layoutY="373.0" text="Note: lương bằng số giờ giảng thực * 500.000đ/giờ + 1.000.000đ/tháng.">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
