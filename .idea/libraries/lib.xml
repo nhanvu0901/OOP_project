@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" />
       <root url="jar://$PROJECT_DIR$/mysql-connector-java-8.0.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../controlsfx-11.1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

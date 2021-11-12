@@ -3,10 +3,15 @@ package sample.Control;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import org.controlsfx.control.Notifications;
 
+
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import  javafx.scene.control.Label;
@@ -19,6 +24,7 @@ import java.sql.*;
 
 
 import Database.DBConnection;
+import javafx.util.Duration;
 import sample.style.Style;
 
 public class Controller {
@@ -42,10 +48,21 @@ public class Controller {
     public void submit(ActionEvent actionEvent) throws IOException, SQLException {
         String Name = name.getText();
         String Phone = phone.getText();
+        URL image = Controller.class.getClassLoader().getResource("asset/delete.png");
+        Image img = new Image(String.valueOf(image));
         if(Name == "" && Phone ==""){
             Style.setDanger(name,nameLabel,infrom);
             Style.setDanger(phone,phoneLabel,infrom);
             infrom.setText("Không được để trống dòng");
+
+            Notifications notifications = Notifications.create()
+                    .title("Error")
+                    .text("Tên và số điện thoại không được để trống")
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.TOP_CENTER)
+                    .graphic(new ImageView(img));
+            notifications.darkStyle();
+            notifications.show();
         }
         else if(Name == ""){
             Style.setDanger(name,nameLabel,infrom);

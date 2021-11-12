@@ -19,7 +19,7 @@ public class Style {
         text.setStyle("-fx-border-color:red");
         label.setStyle("-fx-text-fill: red");
          inform.setVisible(true);
-        setTimeout(() -> removeDanger(text,label,inform), 5000);
+        setTimeout(() -> removeDanger(text,label,inform), 2500);
     }
 
 
