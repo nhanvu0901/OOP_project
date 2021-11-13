@@ -67,10 +67,26 @@ public class Controller {
         else if(Name == ""){
             Style.setDanger(name,nameLabel,infrom);
             infrom.setText("Không được để tên trống dòng");
+            Notifications notifications = Notifications.create()
+                    .title("Error")
+                    .text("Tên không được để trống")
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.TOP_CENTER)
+                    .graphic(new ImageView(img));
+            notifications.darkStyle();
+            notifications.show();
         }
         else if(Phone == ""){
             Style.setDanger(phone,phoneLabel,infrom);
             infrom.setText("Không được để dòng số điện thoại trống dòng");
+            Notifications notifications = Notifications.create()
+                    .title("Error")
+                    .text("Số điện thoại không được để trống")
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.TOP_CENTER)
+                    .graphic(new ImageView(img));
+            notifications.darkStyle();
+            notifications.show();
         }
         else{
             Connection con = DBConnection.getConnection();
@@ -97,11 +113,6 @@ public class Controller {
                 Style.setInform(infrom);
                 infrom.setText("Tên đăng nhập hoặc mật khẩu không đúng");
             }
-
-
-
-
-
         }
     }
 

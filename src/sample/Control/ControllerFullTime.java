@@ -6,12 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -25,6 +28,8 @@ import Modify.fullTimeModify;
 
 
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import sample.style.Style;
 
 
@@ -39,7 +44,8 @@ public class ControllerFullTime implements Initializable{
 
     fullTimeModify model = new fullTimeModify();
 
-
+    URL image = Controller.class.getClassLoader().getResource("asset/verified.png");
+    Image imgSuccess = new Image(String.valueOf(image));
 
 
     @FXML
@@ -121,6 +127,7 @@ public class ControllerFullTime implements Initializable{
         String phone = phoneText.getText();
         String coefficentTxt = coefficientText.getText();
 
+
         if(name == "" && schoolYearTxt =="" && specialty=="" && phone==""&&coefficentTxt==""){
             Style.setDanger(nameText,nameLabel,inform);
             Style.setDanger(teachAtSchoolYearText,teachAtSchoolYearLabel,inform);
@@ -196,6 +203,16 @@ public class ControllerFullTime implements Initializable{
                     Style.success(inform, "Insert database thành công!");
                     double luong = teacher.getLuong();
                     salaryText.setText(Double.toString(luong));
+
+                    Notifications notifications = Notifications.create()
+                            .title("Thành công")
+                            .text("Bạn đã thêm data thành công")
+                            .hideAfter(Duration.seconds(3))
+                            .position(Pos.TOP_CENTER)
+                            .graphic(new ImageView(imgSuccess));
+                    notifications.darkStyle();
+                    notifications.show();
+
                     UpdateTable();
                     clearText();
                 }
@@ -273,6 +290,16 @@ public class ControllerFullTime implements Initializable{
                 fullTimeModify.update(teacher);
                 fullTimeModify.updateTeacher(teacher1);
                 Style.success(inform,"Update database thành công");
+
+                Notifications notifications = Notifications.create()
+                        .title("Thành công")
+                        .text("Bạn đã sửa thông tin thành công")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.TOP_CENTER)
+                        .graphic(new ImageView(imgSuccess));
+                notifications.darkStyle();
+                notifications.show();
+
                 UpdateTable();
                 clearText();
 
