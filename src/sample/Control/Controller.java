@@ -7,7 +7,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.Notifications;
 
 
@@ -31,7 +34,7 @@ public class Controller {
         private Stage stage;
         private Scene scene;
         private Parent root;
-
+        private double x, y;
 
         @FXML
         private TextField  name , phone;
@@ -42,7 +45,8 @@ public class Controller {
         private Label nameLabel;
         @FXML
         private Label phoneLabel;
-
+        @FXML
+        private ImageView closeButton;
 
 
     public void submit(ActionEvent actionEvent) throws IOException, SQLException {
@@ -108,15 +112,40 @@ public class Controller {
                     stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
+
+                    root.setOnMousePressed(event -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+                    root.setOnMouseDragged(event -> {
+
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+
+                    });
+
+
                     stage.show();
             } else {
                 Style.setInform(infrom);
                 infrom.setText("Tên đăng nhập hoặc mật khẩu không đúng");
+                Notifications notifications = Notifications.create()
+                        .title("Error")
+                        .text("Tên đăng nhập hoặc mật khẩu không đúng")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.TOP_CENTER)
+                        .graphic(new ImageView(img));
+                notifications.darkStyle();
+                notifications.show();
             }
         }
     }
 
-
+    @FXML
+    private void Close(MouseEvent event){
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.hide();
+    }
 
 
 }

@@ -16,13 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Main extends Application {
-
+    private double x, y;
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -33,6 +34,18 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setTitle("Quản lý giáo viên");
             primaryStage.setResizable(false);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            //Giúp kéo thả được màn hình
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+
+                primaryStage.setX(event.getScreenX() - x);
+                primaryStage.setY(event.getScreenY() - y);
+
+            });
             primaryStage.show();
         }
 

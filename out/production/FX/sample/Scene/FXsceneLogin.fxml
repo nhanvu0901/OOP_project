@@ -35,6 +35,11 @@
             </image>
         </ImageView>
       <TextField fx:id="phone" layoutX="471.0" layoutY="224.0" prefHeight="25.0" prefWidth="161.0" />
+      <ImageView fx:id="closeButton" fitHeight="31.0" fitWidth="24.0" layoutX="673.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../asset/close.png" />
+         </image>
+      </ImageView>
     </children>
     <effect>
         <ColorAdjust brightness="0.03" contrast="-0.05" hue="-0.02" saturation="-0.32" />

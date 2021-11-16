@@ -1,1 +1,7 @@
-add path trong edit configurate --module-path "C:\JAVA\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
+-Các thư viện cần thiết như javafx , mysql-connector đã có sẵn trong chương trình
+-Nếu chương trình chưa set up sdk xin hãy download java sdk 17
+-Chương trình được viết trên intelij nên để có trải nghiệm tốt nhất bạn nên sử dụng intelj để mở trương trình
+-Khi mới download project intelij vẫn chưa biết run hàm main ở đâu nên ta phải chỉnh lại Run:
+   +Bước 1 : mở Run --> Edit Configurations
+   +Bước 2 : Modify Option --> Add VM Options
+   +Bước 3 :copy đoạn lênh này vào : --module-path "C:\JAVA\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
