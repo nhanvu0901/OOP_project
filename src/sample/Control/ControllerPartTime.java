@@ -1,53 +1,71 @@
 package sample.Control;
 
 import Database.DBConnection;
-
 import Model.Teacher;
-
-import Modify.fullTimeModify;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
-
 import java.util.ResourceBundle;
 
 import Model.partTimeTeacher;
 import Modify.partTimeModify;
+import Modify.fullTimeModify;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import sample.style.Style;
 
 
-public class ControllerPartTime implements Initializable{
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import sample.style.Style;
+
+
+public class ControllerPartTime  implements Initializable{
+
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Double x,y;
     Integer index = -1;
 
     ObservableList<partTimeTeacher> listM;
 
     partTimeModify model = new partTimeModify();
 
+    URL image = ControllerLogin.class.getClassLoader().getResource("asset/verified.png");
+    Image imgSuccess = new Image(String.valueOf(image));
 
+    //Button
+    @FXML
+    private Button btnPartTimeTable,btnHome,btnFullTimetable,btnSignout,btnInfo;
 
 
     @FXML
     private TextField  nameText,teachAtSchoolYearText,specialtyText,phoneText,hourText,salaryText;
 
     @FXML
-    private Label inform,nameLabel,teachAtSchoolYearLabel,specialtyLabel,phoneLabel,hourLabel;
+    private Label Name, inform,nameLabel,teachAtSchoolYearLabel,specialtyLabel,phoneLabel,hourLabel;
     @FXML
     private TableView<partTimeTeacher> table1;
 
@@ -67,7 +85,6 @@ public class ControllerPartTime implements Initializable{
     private TableColumn<partTimeTeacher, Double> col_hour;
 
     int idProp ;
-
     Teacher teacherProp ;
 
 
@@ -96,6 +113,7 @@ public class ControllerPartTime implements Initializable{
         int id = partTimeModify.findAllTeacher(teacherProp);
         System.out.println(id);
     }
+
     public void UpdateTable(){
 
         col_name.setCellValueFactory(new PropertyValueFactory<partTimeTeacher,String>("name"));
@@ -108,10 +126,10 @@ public class ControllerPartTime implements Initializable{
         listM = model.findAll();
         table1.setItems(listM);
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        UpdateTable();
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        UpdateTable();
 
     }
 
@@ -196,7 +214,18 @@ public class ControllerPartTime implements Initializable{
                     Style.success(inform, "Insert database thanh cong!");
                     double luong = teacher.getLuong();
                     salaryText.setText(Double.toString(luong));
+
+                    Notifications notifications = Notifications.create()
+                            .title("Thành công")
+                            .text("Bạn đã thêm data thành công")
+                            .hideAfter(Duration.seconds(3))
+                            .position(Pos.TOP_CENTER)
+                            .graphic(new ImageView(imgSuccess));
+                    notifications.darkStyle();
+                    notifications.show();
+
                     UpdateTable();
+                    clearText();
                 }
 
             } catch (Exception e) {
@@ -262,7 +291,7 @@ public class ControllerPartTime implements Initializable{
                 int teachAtSchoolYear = Integer.parseInt(teachAtSchoolYearText.getText());
 
 
-                int id = fullTimeModify.findAllTeacher(teacherProp);
+                int id = partTimeModify.findAllTeacher(teacherProp);
 
 
                 partTimeTeacher teacher = new partTimeTeacher(idProp,name, teachAtSchoolYear, specialty, phone, hour);
@@ -272,6 +301,15 @@ public class ControllerPartTime implements Initializable{
                 partTimeModify .update(teacher);
                 partTimeModify.updateTeacher(teacher1);
                 Style.success(inform,"Update database thanh cong");
+
+                Notifications notifications = Notifications.create()
+                        .title("Thành công")
+                        .text("Bạn đã sửa thông tin thành công")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.TOP_CENTER)
+                        .graphic(new ImageView(imgSuccess));
+                notifications.darkStyle();
+                notifications.show();
                 UpdateTable();
                 clearText();
 
@@ -281,6 +319,8 @@ public class ControllerPartTime implements Initializable{
         }
 
     }
+
+
     public void deleteUser(ActionEvent actionEvent) throws IOException {
         String name = nameText.getText();
         String schoolYearTxt = teachAtSchoolYearText.getText();
@@ -328,5 +368,135 @@ public class ControllerPartTime implements Initializable{
         salaryText.setText("");
     }
 
+
+    public void handleClicks(ActionEvent actionEvent) throws IOException {
+        if (actionEvent.getSource() == btnPartTimeTable) {
+            URL url = new File("src/sample/Scene/FXsceneTabPartTime.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+
+                stage.setX(event.getScreenX() - x);
+                stage.setY(event.getScreenY() - y);
+
+            });
+            stage.show();
+
+        }
+        if (actionEvent.getSource() == btnHome) {
+            URL url = new File("src/sample/Scene/DashBoard.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+
+                stage.setX(event.getScreenX() - x);
+                stage.setY(event.getScreenY() - y);
+
+            });
+            stage.show();
+        }
+        if (actionEvent.getSource() == btnFullTimetable) {
+            URL url = new File("src/sample/Scene/FXsceneTabFullTime.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+
+                stage.setX(event.getScreenX() - x);
+                stage.setY(event.getScreenY() - y);
+
+            });
+            stage.show();
+        }
+
+        if (actionEvent.getSource() == btnSignout) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm data");
+            alert.setContentText("Bạn có muốn quay lại trang đăng nhập");
+            ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+
+            ButtonType cancelButton = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(okButton, cancelButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    URL url = null;
+                    try {
+                        url = new File("src/sample/Scene/FXsceneLogin.fxml").toURI().toURL();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        root = FXMLLoader.load(url);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+
+                    root.setOnMousePressed(event -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+                    root.setOnMouseDragged(event -> {
+
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+
+                    });
+                    stage.show();
+                } else{
+                    alert.close();
+                }
+            });
+
+        }
+        if (actionEvent.getSource() == btnInfo) {
+            URL url = new File("src/sample/Scene/FXsceneInfo.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+
+                stage.setX(event.getScreenX() - x);
+                stage.setY(event.getScreenY() - y);
+
+            });
+
+            stage.show();
+        }
+
+    }
+    @FXML
+    private void Close(MouseEvent event){
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.hide();
+    }
 
 }

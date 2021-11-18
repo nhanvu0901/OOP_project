@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #354e63;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Control.ControllerInfo">
+    <children>
+        <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #4c638a;" AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="1.0">
+            <children>
+                <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../asset/user.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="50.0" />
+                    </VBox.margin></ImageView>
+                <Label fx:id="Name" alignment="TOP_CENTER" text="User" textFill="#e7e5e5">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+                </Label>
+                <Button fx:id="btnHome" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="75.0" prefWidth="256.0" stylesheets="@../style/style.css" text="Home" textFill="#e7e5e5" textOverrun="WORD_ELLIPSIS">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </Button>
+
+                <Button fx:id="btnFullTimetable" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="69.0" prefWidth="256.0" stylesheets="@../style/style.css" text="Giáo viên full time">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/fullTime.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </Button>
+
+                <Button fx:id="btnPartTimeTable" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="77.0" prefWidth="256.0" stylesheets="@../style/style.css" text="Giáo viên part time">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/partTime.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </Button>
+                <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="79.0" prefWidth="256.0" stylesheets="@../style/style.css" text="Sign Out">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/signOut.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </Button>
+
+                <Button fx:id="btnInfo" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="73.0" prefWidth="256.0" stylesheets="@../style/style.css" text="Infomation">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/setting.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </Button>
+            </children>
+        </VBox>
+
+
+
+
+
+        <StackPane layoutX="256.0" layoutY="1.0" prefHeight="680.0" prefWidth="996.0">
+            <children>
+
+                <Pane fx:id="pnlPartTimeTable" prefHeight="680.0" prefWidth="847.0" visible="false">
+                    <fx:include fx:id="tab2" source="./FXsceneTabPartTime.fxml" />
+                </Pane>
+
+                <Pane fx:id="pnlMenus" prefHeight="680.0" prefWidth="847.0" />
+                <Pane fx:id="pnlTable" prefHeight="680.0" prefWidth="847.0">
+
+                          <ImageView fx:id="closeButton" fitHeight="31.0" fitWidth="24.0" layoutX="970.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../asset/close.png" />
+                        </image>
+                    </ImageView>
+               <ImageView fitHeight="73.0" fitWidth="67.0" layoutX="486.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/user.png" />
+                  </image>
+               </ImageView>
+               <Label fx:id="textName" alignment="CENTER" layoutX="520.0" layoutY="210.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="textYear" alignment="CENTER" layoutX="520.0" layoutY="263.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="textSpecialty" alignment="CENTER" layoutX="520.0" layoutY="313.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="textPhone" alignment="CENTER" layoutX="520.0" layoutY="370.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="textSalary" alignment="CENTER" layoutX="520.0" layoutY="427.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="textHour" alignment="CENTER" layoutX="520.0" layoutY="539.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE" visible="false">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="textCoeffient" alignment="CENTER" layoutX="520.0" layoutY="539.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE" visible="false">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label layoutX="360.0" layoutY="211.0" prefHeight="26.0" prefWidth="115.0" text="Tên giáo viên:" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label layoutX="360.0" layoutY="264.0" prefHeight="26.0" prefWidth="128.0" text="Năm về trường:" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label layoutX="360.0" layoutY="314.0" prefHeight="26.0" prefWidth="144.0" text="Môn chuyên môn:" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label layoutX="360.0" layoutY="371.0" prefHeight="26.0" prefWidth="115.0" text="Số điện thoại:" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label layoutX="360.0" layoutY="428.0" prefHeight="26.0" prefWidth="115.0" text="Lương:" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="labelHour" layoutX="360.0" layoutY="539.0" prefHeight="26.0" prefWidth="128.0" text="Số giờ giảng dạy" textFill="WHITE" visible="false">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label fx:id="labelCoefficient" layoutX="357.0" layoutY="539.0" prefHeight="26.0" prefWidth="151.0" text="Hệ số lương ngạch:" textFill="WHITE" visible="false">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label layoutX="357.0" layoutY="479.0" prefHeight="26.0" prefWidth="135.0" text="Loại giáo viên:" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+
+               <Label fx:id="textKind" alignment="CENTER" layoutX="520.0" layoutY="478.0" prefHeight="26.0" prefWidth="265.0" style="-fx-border-color: transparent transparent #39eded transparent;" stylesheets="@../style/style.css" text="Label" textFill="WHITE">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="322.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/fullTime.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="322.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/year.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="322.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/job.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="322.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/phone.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="321.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/salary.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="321.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../asset/partTime.png" />
+                  </image>
+               </ImageView>
+              
+                </Pane>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

@@ -221,4 +221,107 @@ public class teacherModify {
 
         return teacherList;
     }
+
+    public static int findTotalTeacher(){
+        Connection connection = (Connection) DBConnection.getConnection();
+        Statement statement = null;
+        int total = 1;
+        try {
+
+            String sql = "select count(teacher_name) from teacher ";
+            statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                total = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return total;
+    }
+    public static int findTotalFullTimeTeacher(){
+        Connection connection = (Connection) DBConnection.getConnection();
+        Statement statement = null;
+        int total = 1;
+        try {
+
+            String sql = "select count(teacher_name) from full_time_teacher ";
+            statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                total = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return total;
+    }
+    public static int findTotalPartTimeTeacher(){
+        Connection connection = (Connection) DBConnection.getConnection();
+        Statement statement = null;
+        int total = 1;
+        try {
+
+            String sql = "select count(teacher_name) from part_time_teacher ";
+            statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                total = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fullTimeModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return total;
+    }
 }

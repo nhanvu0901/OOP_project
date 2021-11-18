@@ -87,4 +87,8 @@ public class Teacher {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    public String GetKind(){
+        return "";
+    }
 }

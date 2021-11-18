@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1100" style="-fx-background-color: #354e63;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Control.ControllerPartTime">
+<AnchorPane prefHeight="680.0" prefWidth="1100" style="-fx-background-color: #354e63;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Control.ControllerFullTime">
     <children>
         <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #4c638a;" AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="1.0">
             <children>
@@ -108,75 +108,77 @@
 
         <StackPane layoutX="256.0" layoutY="1.0" prefHeight="680.0" prefWidth="996.0">
             <children>
-                <Pane fx:id="pnlPartTime" prefHeight="680.0" prefWidth="905.0">
+                <Pane fx:id="pnlFullTime" prefHeight="680.0" prefWidth="905.0">
                     <Label fx:id="nameLabel" layoutX="20.0" layoutY="73.0" prefHeight="17.0" prefWidth="102.0" text="Tên giáo viên" textFill="WHITE">
-                  <font>
-                     <Font size="16.0" />
-                  </font></Label>
+                        <font>
+                            <Font size="16.0" />
+                        </font></Label>
                     <Label fx:id="teachAtSchoolYearLabel" layoutX="362.0" layoutY="73.0" text="Năm về trường" textFill="#fff8f8">
-                  <font>
-                     <Font size="16.0" />
-                  </font></Label>
+                        <font>
+                            <Font size="16.0" />
+                        </font></Label>
 
                     <TextField fx:id="nameText" layoutX="129.0" layoutY="73.0" promptText="Nhập tên giáo viên" stylesheets="@../style/style.css" />
 
-                    <TextField fx:id="teachAtSchoolYearText" layoutX="487.0" layoutY="73.0" promptText="Nhập năm về trường" stylesheets="@../style/style.css" />
+                    <TextField fx:id="teachAtSchoolYearText" layoutX="498.0" layoutY="73.0" promptText="Nhập năm về trường" stylesheets="@../style/style.css" />
                     <Label fx:id="specialtyLabel" layoutX="712.0" layoutY="73.0" text="Chuyên môn" textFill="#fffefe">
-                  <font>
-                     <Font size="16.0" />
-                  </font></Label>
+                        <font>
+                            <Font size="16.0" />
+                        </font></Label>
                     <Label fx:id="phoneLabel" layoutX="20.0" layoutY="141.0" prefHeight="25.0" prefWidth="102.0" text="Số điện thoại" textFill="#fffefe">
-                  <font>
-                     <Font size="16.0" />
-                  </font></Label>
+                        <font>
+                            <Font size="16.0" />
+                        </font></Label>
 
                     <TextField fx:id="specialtyText" layoutX="812.0" layoutY="73.0" promptText="Nhập chuyên môn" stylesheets="@../style/style.css" />
                     <TextField fx:id="phoneText" layoutX="129.0" layoutY="141.0" promptText="Nhấp số điện thoại" stylesheets="@../style/style.css" />
 
-                    <TextField fx:id="hourText" layoutX="487.0" layoutY="141.0" promptText="Nhập số giờ giảng dạy" stylesheets="@../style/style.css" />
-                    <Label fx:id="hourLabel" layoutX="356.0" layoutY="141.0" text="Số giờ giảng dạy" textFill="#fff9f9">
+                    <Label fx:id="coefficientLabel" layoutX="360.0" layoutY="141.0" text="Hệ số lương ngạch" textFill="#ffffff">
                         <font>
                             <Font size="16.0" />
                         </font></Label>
+                    <TextField fx:id="coefficientText" layoutX="498.0" layoutY="141.0" promptText="Nhập hệ số lương" stylesheets="@../style/style.css" />
                     <TableView fx:id="table1" layoutY="317.0" onMouseClicked="#getSelected" prefHeight="363.0" prefWidth="996.0" stylesheets="@../style/style.css">
                         <columns>
-                            <TableColumn fx:id="col_id" prefWidth="63.0" text="ID" />
-                            <TableColumn fx:id="col_name" prefWidth="175.0" text="Tên" />
-                            <TableColumn fx:id="col_teachAtSchoolYear" prefWidth="108.0" text="Năm về trường" />
-                            <TableColumn fx:id="col_specialty" prefWidth="175.0" text="Chuyên môn" />
-                            <TableColumn fx:id="col_phone" prefWidth="136.33334350585938" text="Số điện thoại" />
-                            <TableColumn fx:id="col_salary" prefWidth="190.33331298828125" text="Lương/tháng" />
-                            <TableColumn fx:id="col_hour" prefWidth="150.66668701171875" text="Số giờ giảng dạy" />
+                            <TableColumn fx:id="col_id" prefWidth="57.0" text="ID" />
+                            <TableColumn fx:id="col_name" prefWidth="149.0" text="Tên" />
+                            <TableColumn fx:id="col_teachAtSchoolYear" prefWidth="115.0" text="Năm về trường" />
+                            <TableColumn fx:id="col_specialty" prefWidth="157.0" text="Chuyên môn" />
+                            <TableColumn fx:id="col_phone" prefWidth="148.0" text="Số điện thoại" />
+                            <TableColumn fx:id="col_salary" prefWidth="206.6666259765625" text="Lương/tháng" />
+                            <TableColumn fx:id="col_coefficient" prefWidth="164.33343505859375" text="Hệ số lương ngạch" />
                         </columns>
                     </TableView>
                     <Label layoutX="712.0" layoutY="141.0" text="Lương" textFill="#fffdfd">
-                  <font>
-                     <Font size="16.0" />
-                  </font></Label>
+                        <font>
+                            <Font size="16.0" />
+                        </font></Label>
                     <TextField fx:id="salaryText" disable="true" layoutX="812.0" layoutY="141.0" />
-                    <Label fx:id="inform" layoutX="17.0" layoutY="173.0" prefHeight="25.0" prefWidth="337.0" text="Không được để trống dòng" textFill="#e91616" visible="false">
-                  <font>
-                     <Font size="16.0" />
-                  </font></Label>
+                    <Label fx:id="inform" layoutX="20.0" layoutY="184.0" prefHeight="21.0" prefWidth="307.0" text="Không được để trống dòng" textFill="#e91616" visible="false">
+                        <font>
+                            <Font size="15.0" />
+                        </font></Label>
                     <Button id="buttonAdd" fx:id="buttonAdd" layoutX="454.0" layoutY="213.0" mnemonicParsing="false" onAction="#addUser" prefHeight="25.0" prefWidth="141.0" stylesheets="@../style/style.css" text="Add Giáo Viên" />
                     <Button id="buttonUpdate" fx:id="buttonUpdate" layoutX="209.0" layoutY="213.0" mnemonicParsing="false" onAction="#editUser" prefHeight="25.0" prefWidth="138.0" styleClass="root" stylesheets="@../style/style.css" text="Update Giáo Viên" />
                     <Button id="buttonDelete" fx:id="buttonDelete" layoutX="712.0" layoutY="213.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="147.0" styleClass="root" stylesheets="@../style/style.css" text="Xóa Giáo Viên" />
-                    <Label layoutX="426.0" layoutY="14.0" prefHeight="45.0" prefWidth="241.0" text="Giáo viên thời vụ " textFill="WHITE">
+                    <Label layoutX="408.0" layoutY="14.0" prefHeight="45.0" prefWidth="272.0" text="Giáo viên biên chế" textFill="#fffbfb">
                         <font>
                             <Font size="30.0" />
                         </font>
                     </Label>
-                    <Label layoutX="405.0" layoutY="176.0" text="Note: lương bằng số giờ giảng thực * 500.000đ/giờ + 1.000.000đ/tháng." textFill="#fff8f8">
+                    <Label layoutX="360.0" layoutY="180.0" text="Note : Lương bằng hệ số lương ngạch bậc* 3.000.000đ/tháng. " textFill="WHITE">
                         <font>
                             <Font size="16.0" />
                         </font>
                     </Label>
-         
-                 <ImageView fx:id="closeButton" fitHeight="31.0" fitWidth="24.0" layoutX="970.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                         <Image url="@../../asset/close.png" />
-                     </image>
-                 </ImageView>
+
+                    <ImageView fx:id="closeButton" fitHeight="31.0" fitWidth="24.0" layoutX="970.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../asset/close.png" />
+                        </image>
+                    </ImageView>
+
+
                 </Pane>
             </children>
         </StackPane>

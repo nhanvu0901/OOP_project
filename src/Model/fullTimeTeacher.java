@@ -33,4 +33,8 @@ public class fullTimeTeacher extends Teacher{
         return coefficient *3000000;
     }
 
+    public String GetKind(){
+        return "Full Time";
+    }
+
 }

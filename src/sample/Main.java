@@ -29,8 +29,8 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Scene/FXsceneLogin.fxml"));
             Scene scene = new Scene(root);
-            String css = this.getClass().getResource("style/style.css").toExternalForm();
-            scene.getStylesheets().add(css);
+//            String css = this.getClass().getResource("style/style.css").toExternalForm();
+//            scene.getStylesheets().add(css);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Quản lý giáo viên");
             primaryStage.setResizable(false);

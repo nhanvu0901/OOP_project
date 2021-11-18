@@ -36,5 +36,8 @@ public class partTimeTeacher extends Teacher{
 
     public double getLuong(){ return teachingHour*500000 + 1000000;}
 
+    public String GetKind(){
+        return "Part Time";
+    }
 
 }

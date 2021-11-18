@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane blendMode="MULTIPLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="699.0" style="-fx-background-color: #C6BFBD;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Control.Controller">
+<AnchorPane blendMode="MULTIPLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="699.0" style="-fx-background-color: #C6BFBD;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Control.ControllerLogin">
     <children>
         <TextField fx:id="name" layoutX="471.0" layoutY="155.0" prefHeight="26.0" prefWidth="161.0" />
         <Label fx:id="nameLabel" layoutX="357.0" layoutY="157.0" text="Tên giáo viên">

@@ -30,7 +30,7 @@ public class Style {
     public static void removeDanger(TextField textField ,Label label ,Label inform) {
         textField.setStyle("-fx-border-color:none");
 
-        label.setStyle("-fx-text-fill: black");
+        label.setStyle("-fx-text-fill: white");
         inform.setVisible(false);
     }
     public static void setTimeout(Runnable runnable, int delay){
