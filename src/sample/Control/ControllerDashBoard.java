@@ -46,7 +46,7 @@ public class ControllerDashBoard implements Initializable{
     private Parent root;
     private double x, y;
     Integer index = -1;
-
+    private static Teacher teacher;
     //Button
     @FXML
     private Button btnPartTimeTable,btnHome,btnFullTimetable,btnSignout,btnInfo;
@@ -54,16 +54,15 @@ public class ControllerDashBoard implements Initializable{
     //Pane
 
     @FXML
-    private Pane pnlTable;
+    private Pane pnlFullTime,pnlTable,pnlPartTime,pnlInfo;
 
 
 
     @FXML
     private TextField  searchText;
+
     @FXML
-    private ImageView reload;
-    @FXML
-    private Label inform ,totalNum,totalNumFullTime,totalNumPartTime;
+    private Label Name, inform ,totalNum,totalNumFullTime,totalNumPartTime;
 
     @FXML
     private TableView<Teacher> table;
@@ -86,10 +85,10 @@ public class ControllerDashBoard implements Initializable{
     ObservableList<String> options = FXCollections.observableArrayList("Tên giáo viên","Đơn vị chuyên môn","Số điện thoại","Tìm kiếm lương lớn hơn số lương nhập vào");
 
     ObservableList<Teacher> data;
-    public void textChange(){
+    public void textChange(){// choice box event onKeyChange moi lan nhap ki tu se tim theo case ma chung ta chon
         String text = searchText.getText();
 
-        switch (choiceBox.getValue())//Switch on choiceBox value
+        switch (choiceBox.getValue())
         {
             case "Tên giáo viên":
                 data = teacherModify.findByName(text.trim());
@@ -127,6 +126,7 @@ public class ControllerDashBoard implements Initializable{
         table.setItems(listM);
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         UpdateTable();
         choiceBox.setItems(options);
         choiceBox.setValue("Tìm kiếm");
@@ -136,69 +136,51 @@ public class ControllerDashBoard implements Initializable{
         totalNumFullTime.setText(String.valueOf(totalFullTime));
         int totalPartTime = teacherModify.findTotalPartTimeTeacher();
         totalNumPartTime.setText(String.valueOf(totalPartTime));
+
+
+        pnlFullTime.setVisible(false);
+        pnlPartTime.setVisible(false);
+        pnlInfo.setVisible(false);
+        ControllerLogin data = new ControllerLogin();
+
+        try {
+            teacher = data.TransferData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Name.setText(teacher.getName());
+
     }
-    public void reloadPage(){
-        UpdateTable();
-    }
+
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnPartTimeTable) {
-            URL url = new File("src/sample/Scene/FXsceneTabPartTime.fxml").toURI().toURL();
-            root = FXMLLoader.load(url);
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
 
-            root.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root.setOnMouseDragged(event -> {
-
-                stage.setX(event.getScreenX() - x);
-                stage.setY(event.getScreenY() - y);
-
-            });
-            stage.show();
-
+            pnlPartTime.setVisible(true);
+            pnlTable.setVisible(false);
+            pnlInfo.setVisible(false);
+            pnlFullTime.setVisible(false);
         }
         if (actionEvent.getSource() == btnHome) {
-            URL url = new File("src/sample/Scene/DashBoard.fxml").toURI().toURL();
-            root = FXMLLoader.load(url);
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
 
-            root.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root.setOnMouseDragged(event -> {
-
-                stage.setX(event.getScreenX() - x);
-                stage.setY(event.getScreenY() - y);
-
-            });
-            stage.show();
+            pnlFullTime.setVisible(false);
+            pnlTable.setVisible(true);
+            pnlPartTime.setVisible(false);
+            pnlInfo.setVisible(false);
+            UpdateTable();
+            int total = teacherModify.findTotalTeacher();
+            totalNum.setText(String.valueOf(total));
+            int totalFullTime = teacherModify.findTotalFullTimeTeacher();
+            totalNumFullTime.setText(String.valueOf(totalFullTime));
+            int totalPartTime = teacherModify.findTotalPartTimeTeacher();
+            totalNumPartTime.setText(String.valueOf(totalPartTime));
         }
         if (actionEvent.getSource() == btnFullTimetable) {
-            URL url = new File("src/sample/Scene/FXsceneTabFullTime.fxml").toURI().toURL();
-            root = FXMLLoader.load(url);
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
 
-            root.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root.setOnMouseDragged(event -> {
-
-                stage.setX(event.getScreenX() - x);
-                stage.setY(event.getScreenY() - y);
-
-            });
-            stage.show();
+            pnlFullTime.setVisible(true);
+            pnlTable.setVisible(false);
+            pnlPartTime.setVisible(false);
+            pnlInfo.setVisible(false);
         }
 
         if (actionEvent.getSource() == btnSignout) {
@@ -243,25 +225,13 @@ public class ControllerDashBoard implements Initializable{
             });
 
         }
+
         if (actionEvent.getSource() == btnInfo) {
-            URL url = new File("src/sample/Scene/FXsceneInfo.fxml").toURI().toURL();
-            root = FXMLLoader.load(url);
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
 
-            root.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root.setOnMouseDragged(event -> {
-
-                stage.setX(event.getScreenX() - x);
-                stage.setY(event.getScreenY() - y);
-
-            });
-
-            stage.show();
+            pnlFullTime.setVisible(false);
+            pnlTable.setVisible(false);
+            pnlPartTime.setVisible(false);
+            pnlInfo.setVisible(true);
         }
 
     }

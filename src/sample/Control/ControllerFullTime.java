@@ -237,7 +237,7 @@ public class ControllerFullTime implements Initializable{
         String phone = phoneText.getText();
         String coefficentTxt = coefficientText.getText();
 
-        if(name == "" && schoolYearTxt =="" && specialty=="" && phone==""&&coefficentTxt==""){
+        if(name == "" && schoolYearTxt =="" && specialty=="" && phone==""&& coefficentTxt==""){
             Style.setDanger(nameText,nameLabel,inform);
             Style.setDanger(teachAtSchoolYearText,teachAtSchoolYearLabel,inform);
             Style.setDanger(specialtyText,specialtyLabel,inform);

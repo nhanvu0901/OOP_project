@@ -105,7 +105,7 @@
 }
 
 .text-field{
-  -fx-border-color:  transparent transparent #39eded transparent;
+    -fx-border-color:  transparent transparent #39eded transparent;
     -fx-background-color: transparent;
     -fx-text-fill: white;
 }

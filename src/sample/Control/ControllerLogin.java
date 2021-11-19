@@ -30,11 +30,13 @@ import javafx.util.Duration;
 import sample.style.Style;
 
 public class ControllerLogin {
-        private Stage stage;
+
+    private Stage stage;
         private Scene scene;
         private Parent root;
         private double x, y;
-
+        private static String Name;
+        private static String Phone;
         @FXML
         private TextField  name , phone;
 
@@ -46,12 +48,12 @@ public class ControllerLogin {
         private Label phoneLabel;
         @FXML
         private ImageView closeButton;
-        private static Teacher teacherProp;
+        public static  Teacher teacherProp;
 
 
     public void submit(ActionEvent actionEvent) throws IOException, SQLException {
-        String Name = name.getText();
-        String Phone = phone.getText();
+         Name = name.getText();
+         Phone = phone.getText();
         URL image = ControllerLogin.class.getClassLoader().getResource("asset/delete.png");
         Image img = new Image(String.valueOf(image));
         if(Name == "" && Phone ==""){
@@ -126,30 +128,7 @@ public class ControllerLogin {
                     });
                     stage.show();
 
-                PreparedStatement ps1 =
-                        con.prepareStatement
-                                ("SELECT * FROM full_time_teacher  WHERE teacher_name =? AND teacher_phone=? ");
-                ps1.setString(1, Name);
-                ps1.setString(2, Phone);
 
-                PreparedStatement ps2 =
-                        con.prepareStatement
-                                ("SELECT * FROM part_time_teacher  WHERE teacher_name =? AND teacher_phone=? ");
-                ps2.setString(1, Name);
-                ps2.setString(2, Phone);
-
-                //truy van mysql de lay du lieu cua giao vien de hien thi thong tin nguoi dang nhap
-
-
-                ResultSet rs1 = ps1.executeQuery();
-                ResultSet rs2 = ps2.executeQuery();
-
-                if(rs1.next()){ // nguoi dang nhap la full_time_teacher
-                    teacherProp = new fullTimeTeacher(rs1.getInt("teacher_id"),rs1.getString("teacher_name"),rs1.getInt("teacher_year_at_school"),rs1.getString("teacher_specialty"),rs1.getString("teacher_phone"),rs1.getDouble("teacher_salary"),rs1.getDouble("teacher_coefficient"));
-                }
-                if(rs2.next()){
-                    teacherProp = new partTimeTeacher(rs2.getInt("teacher_id"),rs2.getString("teacher_name"),rs2.getInt("teacher_year_at_school"),rs2.getString("teacher_specialty"),rs2.getString("teacher_phone"),rs2.getDouble("teacher_salary"),rs2.getDouble("teacher_hour"));
-                }
 
             } else {
                 Style.setInform(infrom);
@@ -171,8 +150,35 @@ public class ControllerLogin {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.hide();
     }
-    public static Teacher TransferData(){
-         return teacherProp;
+    public static Teacher TransferData() throws SQLException {
+        Connection con = DBConnection.getConnection();
+        PreparedStatement ps1 =
+                con.prepareStatement
+                        ("SELECT * FROM full_time_teacher  WHERE teacher_name =? AND teacher_phone=? ");
+        ps1.setString(1, Name);
+        ps1.setString(2, Phone);
+
+        PreparedStatement ps2 =
+                con.prepareStatement
+                        ("SELECT * FROM part_time_teacher  WHERE teacher_name =? AND teacher_phone=? ");
+        ps2.setString(1, Name);
+        ps2.setString(2, Phone);
+
+        //truy van mysql de lay du lieu cua giao vien de hien thi thong tin nguoi dang nhap
+
+
+        ResultSet rs1 = ps1.executeQuery();
+        ResultSet rs2 = ps2.executeQuery();
+
+        if(rs1.next()){ // nguoi dang nhap la full_time_teacher
+            teacherProp = new fullTimeTeacher(rs1.getInt("teacher_id"),rs1.getString("teacher_name"),rs1.getInt("teacher_year_at_school"),rs1.getString("teacher_specialty"),rs1.getString("teacher_phone"),rs1.getDouble("teacher_salary"),rs1.getDouble("teacher_coefficient"));
+
+        }
+        if(rs2.next()){
+            teacherProp = new partTimeTeacher(rs2.getInt("teacher_id"),rs2.getString("teacher_name"),rs2.getInt("teacher_year_at_school"),rs2.getString("teacher_specialty"),rs2.getString("teacher_phone"),rs2.getDouble("teacher_salary"),rs2.getDouble("teacher_hour"));
+
+        }
+        return teacherProp;
     }
 
 

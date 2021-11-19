@@ -113,6 +113,10 @@
       <StackPane layoutX="256.0" layoutY="1.0" prefHeight="680.0" prefWidth="996.0">
          <children>
 
+            <Pane fx:id="pnlFullTime" visible="false"><fx:include source="FXsceneTabFullTime.fxml" /></Pane>
+            <Pane fx:id="pnlPartTime" visible="false"><fx:include source="FXsceneTabPartTime.fxml" /></Pane>
+            <Pane fx:id="pnlInfo" visible="false"><fx:include source="FXsceneInfo.fxml" /></Pane>
+
             <Pane fx:id="pnlTable" prefHeight="680.0" prefWidth="847.0">
 
 
@@ -143,7 +147,7 @@
                      <TableColumn fx:id="col_salary" prefWidth="187.33343505859375" text="Lương/tháng" />
                   </columns>
                </TableView>
-         
+
                <ImageView fx:id="closeButton" fitHeight="31.0" fitWidth="24.0" layoutX="970.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../asset/close.png" />

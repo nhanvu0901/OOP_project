@@ -13,6 +13,7 @@ public class Style {
         infrom.setVisible(true);
         infrom.setText(message);
         infrom.setStyle("-fx-text-fill:green");
+
         setTimeout(() -> infrom.setVisible(false), 5000);
     }
     public static void setDanger(TextField text ,Label label,Label inform){
@@ -29,7 +30,7 @@ public class Style {
     }
     public static void removeDanger(TextField textField ,Label label ,Label inform) {
         textField.setStyle("-fx-border-color:none");
-
+        textField.setStyle(" -fx-border-color:transparent transparent #39eded transparent");
         label.setStyle("-fx-text-fill: white");
         inform.setVisible(false);
     }

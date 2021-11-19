@@ -140,7 +140,7 @@ public class ControllerPartTime  implements Initializable{
         String phone = phoneText.getText();
         String hourTxt = hourText.getText();
 
-        if(name == "" && schoolYearTxt =="" && specialty=="" && phone==""&& hourTxt==""){
+        if(name == "" && schoolYearTxt =="" && specialty=="" && phone =="" && hourTxt==""){
             Style.setDanger(nameText,nameLabel,inform);
             Style.setDanger(teachAtSchoolYearText,teachAtSchoolYearLabel,inform);
             Style.setDanger(specialtyText,specialtyLabel,inform);
@@ -151,7 +151,6 @@ public class ControllerPartTime  implements Initializable{
             inform.setVisible(true);
             inform.setStyle("-fx-text-fill:red");
         }
-
 
         else if(name == ""){
             Style.setDanger(nameText,nameLabel,inform);
@@ -183,8 +182,6 @@ public class ControllerPartTime  implements Initializable{
             inform.setVisible(true);
             inform.setStyle("-fx-text-fill:red");
         }
-
-
 
         else {
             try {
